@@ -5,19 +5,19 @@ const bodyParser = require('body-parser')
 const passport = require('passport');
 const cookieSession = require('cookie-session')
 require('./passport-setup');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 const path = require('path');
 
 
 
-mongoose.connect('mongodb://localhost:27017/api', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log('Mongo Connection Open');
-    })
-    .catch(err => {
-        console.log("oh no error")
-        console.log(err)
-    })
+// mongoose.connect('mongodb://localhost:27017/api', { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => {
+//         console.log('Mongo Connection Open');
+//     })
+//     .catch(err => {
+//         console.log("oh no error")
+//         console.log(err)
+//     })
 
 app.set('view engine', 'ejs');
 app.use(express.json())
@@ -51,7 +51,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Example protected and unprotected routes
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
     res.render('home')
 })
 app.get('/failed', (req, res) => res.send('You Failed to log in!'))
@@ -76,9 +76,7 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
             res.redirect('/connect');
         }
     );
-app.get('/', (req, res) => {
-    res.render('home')
-})
+
 app.get('/logout', (req, res) => {
     req.session = null;
     req.logout();
