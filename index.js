@@ -22,6 +22,7 @@ const path = require('path');
 app.set('view engine', 'ejs');
 app.use(express.json())
 app.use('/java', express.static(path.resolve(__dirname, 'java/')))
+app.use('/views', express.static(path.resolve(__dirname, 'views/')))
 
 app.use(cors())
 
