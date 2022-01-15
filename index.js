@@ -7,8 +7,7 @@ const cookieSession = require('cookie-session')
 require('./passport-setup');
 //const mongoose = require('mongoose');
 const path = require('path');
-
-
+require("dotenv/config");
 
 // mongoose.connect('mongodb://localhost:27017/api', { useNewUrlParser: true, useUnifiedTopology: true })
 //     .then(() => {
@@ -84,4 +83,4 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 })
 
-app.listen(3000, () => console.log(`Example app listening on port ${3000}!`))
+app.listen(process.env.port || 3000, () => console.log(`Running ${3000}!`))
